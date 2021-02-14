@@ -1,3 +1,5 @@
+import { builtinModules as builtin } from 'module';
+
 import typescript from '@wessberg/rollup-plugin-ts'
 
 export default {
@@ -5,7 +7,7 @@ export default {
     'index': 'src/index.ts',
   },
 
-  //external: [ 'react', 'react-dom' ],
+  external: [ ...builtin ],
 
   output: {
     dir: './dist',

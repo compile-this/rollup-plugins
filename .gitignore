@@ -5,7 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Build outputs
-dist/
+**/dist/
 
 # Runtime data
 *.pid
@@ -60,9 +60,3 @@ jspm_packages/
 
 # OS X temporary files
 .DS_Store
-
-# Rush temporary files
-common/deploy/
-common/temp/
-common/autoinstallers/*/.npmrc
-**/.rush/temp/

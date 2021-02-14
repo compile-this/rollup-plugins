@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./dist",
-    "module": "ESNext",
-    "target": "ESNext",
-    "lib": ["es6", "es7", "dom"],
+    "module": "ES2020",
+    "target": "ES2020",
+    "lib": ["ES2020"],
     "sourceMap": true,
     "declaration": true,
     "allowJs": false,
