@@ -1,0 +1,44 @@
+{
+  "name": "@compile-this/rollup-plugins",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=14",
+    "pnpm": ">=5"
+  },
+  "author": {
+    "name": "Adam Thornburn",
+    "email": "adam.thornburn@defize.co.uk"
+  },
+  "description": "A collection of Rollup (https://rollupjs.org) plugins of dubious utility.",
+  "keywords": [
+    "rollup",
+    "plugin",
+    "rollup-plugin"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/compile-this/rollup-plugins",
+  "repository": "github:compile-this/rollup-plugins",
+  "scripts": {
+    "build": "pnpm -r build",
+    "commit": "cz",
+    "postinstall": "husky install",
+    "postpublish": "pinst --enable",
+    "prepublishOnly": "pinst --disable"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^5.0.9",
+    "pinst": "^2.1.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  }
+}

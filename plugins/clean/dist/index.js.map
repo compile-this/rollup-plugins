@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../src/clean.ts"],"sourcesContent":["export function clean() {\n  \n}"],"names":[],"mappings":"SAAgB,KAAK;AAErB;;;;"}
