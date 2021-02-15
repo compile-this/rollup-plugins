@@ -13,6 +13,8 @@ export default {
     dir: './dist',
     format: 'es',
     sourcemap: true,
+    entryFileNames: '[name].mjs',
+    chunkFileNames: '[name]-[hash].mjs',
   },
 
   plugins: [

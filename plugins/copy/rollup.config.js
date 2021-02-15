@@ -1,13 +1,13 @@
 import { builtinModules as builtin } from 'module';
 
-import typescript from '@wessberg/rollup-plugin-ts'
+import typescript from '@wessberg/rollup-plugin-ts';
 
 export default {
   input: {
     'index': 'src/index.ts',
   },
 
-  external: [ ...builtin ],
+  external: [ ...builtin, 'globby' ],
 
   output: {
     dir: './dist',

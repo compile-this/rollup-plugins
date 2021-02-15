@@ -25,7 +25,7 @@ export function substitute(options: SubstitutePluginOptions) : Plugin {
       const tokens = new Tokens(bundle, staticTokens);
 
       if (!output.dir) {
-        this.error(`output.dir must be defined to use this plugin.`);
+        this.error('output.dir must be defined to use this plugin.');
       }
 
       const source = resolve(root, options.sourceFile);
@@ -47,7 +47,7 @@ export function substitute(options: SubstitutePluginOptions) : Plugin {
 
       this.emitFile(result);
     }
-  }
+  };
 }
 
 async function loadFileAsString(name: string) : Promise<string> {
@@ -57,7 +57,7 @@ async function loadFileAsString(name: string) : Promise<string> {
   return contents;
 }
 
-function createReplacer(tokens: Tokens) : ((match: string, ...args: any[]) => string) {
+function createReplacer(tokens: Tokens) : ((match: string, ...args: string[]) => string) {
   return (match: string, type: TokenType, name: string) : string => {
     const token = tokens.resolveToken(type, name);
 
@@ -66,7 +66,7 @@ function createReplacer(tokens: Tokens) : ((match: string, ...args: any[]) => st
     }
 
     return token;
-  }
+  };
 }
 
 enum TokenType {
@@ -88,13 +88,13 @@ class Tokens {
     Object.values(bundle).forEach(entry => {
       if (entry.name) {
         switch (entry.type) {
-          case 'asset':
-            this.#assets[entry.name] = entry.fileName;
-            break;
+        case 'asset':
+          this.#assets[entry.name] = entry.fileName;
+          break;
 
-          case 'chunk':
-            this.#chunks[entry.name] = entry.fileName;
-            break;
+        case 'chunk':
+          this.#chunks[entry.name] = entry.fileName;
+          break;
         }
       }
     });
@@ -102,28 +102,38 @@ class Tokens {
 
   resolveToken(type: TokenType, name: string) : string | undefined {
     switch (type) {
-      case TokenType.ASSET:
-        return this.resolveAssetToken(name);
+    case TokenType.ASSET:
+      return this.resolveAssetToken(name);
 
-      case TokenType.CHUNK:
-        return this.resolveChunkToken(name);
+    case TokenType.CHUNK:
+      return this.resolveChunkToken(name);
 
-      case TokenType.STATIC:
-        return this.resolveStaticToken(name);
+    case TokenType.STATIC:
+      return this.resolveStaticToken(name);
     }
   }
 
   resolveAssetToken(name: string) : string | undefined {
-    return this.#assets[name];
+    return makeRooted(this.#assets[name]);
   }
 
   resolveChunkToken(name: string) : string | undefined {
-    return this.#chunks[name];
+    return makeRooted(this.#chunks[name]);
   }
 
   resolveStaticToken(name: string) : string | undefined {
     return this.#statics[name];
   }
+}
+
+function makeRooted(path: string) {
+  if (path.length > 0) {
+    if (![ '/', '.' ].includes(path[0])) {
+      return `./${path}`;
+    }
+  }
+
+  return path;
 }
 
 const tokenMatcher = /\$\{\{(asset|chunk|static):(.+?)\}\}/gi;
