@@ -14,12 +14,13 @@
   "license": "MIT",
   "homepage": "https://github.com/compile-this/rollup-plugins",
   "repository": "github:compile-this/rollup-plugins",
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "type": "commonjs",
+  "main": "./dist/cjs/index.cjs",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
-    "default": "./dist/index.mjs",
     "node": {
-      "import": "./dist/index.mjs"
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "devDependencies": {

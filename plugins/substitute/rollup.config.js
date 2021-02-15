@@ -9,13 +9,23 @@ export default {
 
   external: [ ...builtin ],
 
-  output: {
-    dir: './dist',
-    format: 'es',
-    sourcemap: true,
-    entryFileNames: '[name].mjs',
-    chunkFileNames: '[name]-[hash].mjs',
-  },
+  output: [
+    {
+      dir: './dist/esm',
+      format: 'esm',
+      sourcemap: true,
+      entryFileNames: '[name].mjs',
+      chunkFileNames: '[name]-[hash].mjs',
+    },
+
+    {
+      dir: './dist/cjs',
+      format: 'cjs',
+      sourcemap: true,
+      entryFileNames: '[name].cjs',
+      chunkFileNames: '[name]-[hash].cjs',
+    }
+  ],
 
   plugins: [
     typescript(),

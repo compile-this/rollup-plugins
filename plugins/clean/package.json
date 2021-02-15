@@ -17,11 +17,13 @@
   "dependencies": {
     "rimraf": "^3.0.2"
   },
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "type": "commonjs",
+  "main": "./dist/cjs/index.cjs",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     "node": {
-      "import": "./dist/index.mjs"
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "devDependencies": {
